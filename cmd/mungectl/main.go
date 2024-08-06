@@ -15,7 +15,7 @@
 
 package main
 
-import "mungectl/cmd/mungectl/cmd"
+import "github.com/charmed-hpc/mungectl/cmd/mungectl/cmd"
 
 func main() {
 	cmd.Execute()

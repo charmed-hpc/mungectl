@@ -22,7 +22,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	key "mungectl/internal/key"
+	key "github.com/charmed-hpc/mungectl/internal/key"
 )
 
 const getHelp = "Get the current munge key"
