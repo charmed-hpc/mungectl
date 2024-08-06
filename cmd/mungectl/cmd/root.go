@@ -21,7 +21,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	key "mungectl/cmd/mungectl/cmd/key"
+	key "github.com/charmed-hpc/mungectl/cmd/mungectl/cmd/key"
 )
 
 const help = "Control the munge authentication daemon"

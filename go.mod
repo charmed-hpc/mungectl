@@ -1,4 +1,4 @@
-module mungectl
+module github.com/charmed-hpc/mungectl
 
 go 1.22.4
 
