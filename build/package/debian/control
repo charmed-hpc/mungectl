@@ -1,0 +1,20 @@
+Source: mungectl
+Maintainer: Jason C. Nucciarone <nuccitheboss@ubuntu.com>
+Section: admin
+Priority: optional
+Build-Depends: debhelper (>= 13.4),
+               debhelper-compat (= 13),
+               dh-golang,
+               golang-any,
+               golang-github-spf13-cobra-dev (>= 1.3.0)
+Standards-Version: 4.6.2
+Vcs-Browser: https://https://github.com/charmed-hpc/mungectl
+Vcs-Git: https://github.com/charmed-hpc/mungectl.git
+Homepage: https://github.com/charmed-hpc/mungectl
+XS-Go-Import-Path: github.com/charmed-hpc/mungectl
+
+Package: mungectl
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Built-Using: ${misc:Built-Using}
+Description: Control the munge authentication daemon.

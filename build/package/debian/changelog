@@ -1,0 +1,5 @@
+mungectl (0.1.0-ubuntu1) unstable; urgency=low
+
+  * dh: placeholder changelog
+
+-- Jason C. Nucciarone <nuccitheboss@ubuntu.com> Thu, 08 Aug 2024 12:00:00 -0400
