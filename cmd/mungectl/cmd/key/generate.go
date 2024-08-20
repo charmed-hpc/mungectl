@@ -45,10 +45,6 @@ func generateExecute(cmd *cobra.Command, args []string) {
 	}
 
 	file := viper.GetString("keyfile")
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
 	if err := key.Write(file, content); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to write generated munge key file %s\n", file)
 	}
