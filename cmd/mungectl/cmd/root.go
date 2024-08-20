@@ -18,7 +18,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"path"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -41,17 +40,9 @@ func init() {
 
 // Initialize mungectl configuration.
 func initConfig() {
-	viper.SetConfigName("mungectl")
-	viper.SetConfigType("yaml")
-
-	if os.Getenv("SNAP") != "" {
-		common := os.Getenv("SNAP_COMMON")
-		viper.AddConfigPath(path.Join(common, "/etc/munge/mungectl.yaml"))
-		viper.SetDefault("keyfile", path.Join(common, "/etc/munge/munge.key"))
-	} else {
-		viper.AddConfigPath("/etc/munge/mungectl.yaml")
-		viper.SetDefault("keyfile", "/etc/munge/munge.key")
-	}
+	viper.SetEnvPrefix("mungectl")
+	viper.BindEnv("keyfile")
+	viper.SetDefault("keyfile", "/etc/munge/munge.key")
 }
 
 func Execute() {
