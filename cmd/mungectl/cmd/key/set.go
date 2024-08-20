@@ -18,9 +18,9 @@ package key
 import (
 	"fmt"
 	"os"
-	"path"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	key "github.com/charmed-hpc/mungectl/internal/key"
 )
@@ -46,7 +46,7 @@ func setExecute(cmd *cobra.Command, args []string) {
 		os.Exit(2)
 	}
 
-	file := path.Join(os.Getenv("SNAP_COMMON"), "etc", "munge", "munge.key")
+	file := viper.GetString("keyfile")
 	decoded, err := key.Decode(content)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "failed to decode new munge key")

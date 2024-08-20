@@ -18,8 +18,10 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	key "github.com/charmed-hpc/mungectl/cmd/mungectl/cmd/key"
 )
@@ -32,8 +34,24 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
+	cobra.OnInitialize(initConfig)
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.AddCommand(key.KeyCmd)
+}
+
+// Initialize mungectl configuration.
+func initConfig() {
+	viper.SetConfigName("mungectl")
+	viper.SetConfigType("yaml")
+
+	if os.Getenv("SNAP") != "" {
+		common := os.Getenv("SNAP_COMMON")
+		viper.AddConfigPath(path.Join(common, "/etc/munge/mungectl.yaml"))
+		viper.SetDefault("keyfile", path.Join(common, "/etc/munge/munge.key"))
+	} else {
+		viper.AddConfigPath("/etc/munge/mungectl.yaml")
+		viper.SetDefault("keyfile", "/etc/munge/munge.key")
+	}
 }
 
 func Execute() {
