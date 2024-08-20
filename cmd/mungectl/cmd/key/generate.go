@@ -18,9 +18,9 @@ package key
 import (
 	"fmt"
 	"os"
-	"path"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	key "github.com/charmed-hpc/mungectl/internal/key"
 )
@@ -44,7 +44,11 @@ func generateExecute(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	file := path.Join(os.Getenv("SNAP_COMMON"), "etc", "munge", "munge.key")
+	file := viper.GetString("keyfile")
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 	if err := key.Write(file, content); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to write generated munge key file %s\n", file)
 	}

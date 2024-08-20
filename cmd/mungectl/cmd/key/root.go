@@ -17,6 +17,7 @@ package key
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 const keyHelp = "Manage munge key file"
@@ -29,4 +30,8 @@ var KeyCmd = &cobra.Command{
 func init() {
 	KeyCmd.CompletionOptions.DisableDefaultCmd = true
 	KeyCmd.AddCommand(generateCmd, getCmd, setCmd)
+	KeyCmd.PersistentFlags().StringP("keyfile", "k", "", "Specify keyfile path")
+	// errcheck: an error would be returned here if the keyfile flag did not exist,
+	// but since the flag does exist, we can safely ignore the error returned here.
+	_ = viper.BindPFlag("keyfile", KeyCmd.PersistentFlags().Lookup("keyfile"))
 }
