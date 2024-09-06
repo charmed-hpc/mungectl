@@ -25,6 +25,10 @@ build:
   @mkdir {{build_dir}}
   go build -o {{build_dir}}/mungectl {{repo_path}}/cmd/mungectl
 
+# install mungectl
+install:
+  install -m 0755 {{build_dir}}/mungectl /usr/bin
+
 # apply formatting to project
 fmt:
   golangci-lint -v run --fix
