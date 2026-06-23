@@ -1,3 +1,8 @@
+> `mungectl` is archived. It was originally used within the Slurm charms and snap, but was eventually deprecated in favor of
+> managing the MUNGE key directly in the charm/snap Python code. While the CLI binary was neat, key issues included (a)
+> distributing `mungectl` through a Debian package was a maintenance burden and (b) handling exit codes emitted by the
+> `mungectl` CLI binary was less granular than directly handling exceptions raised in Python.
+
 # mungectl
 
 ![GitHub License](https://img.shields.io/github/license/charmed-hpc/mungectl)
